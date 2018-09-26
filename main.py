@@ -40,10 +40,6 @@ def my_enumerate(seq):
         yield counter, element
         counter += 1
 
-def main():
-    ''' Main entry point of the script '''
-    print()
-
 '''
     Test cases
 '''
@@ -79,6 +75,3 @@ if __name__ == "__main__":
     """ This is executed when run from the command line """
     
     unittest.main(exit=False, verbosity=2)
-    # main()
-    # print(lastOccurrence('L', 'hello world'))
-    
