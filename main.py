@@ -32,6 +32,14 @@ def lastOccurrence(target, targetList):
 
     return lastOccurrence
 
+def my_enumerate(seq):
+    ''' provides the same functionality as enumerate WITHOUT calling enumerate() '''
+    counter = 0
+
+    for element in seq:
+        yield counter, element
+        counter += 1
+
 def main():
     ''' Main entry point of the script '''
     print()
@@ -60,9 +68,17 @@ class AllTest(unittest.TestCase):
         self.assertIsNone(lastOccurrence('P', 'apple'))
         self.assertEqual(lastOccurrence(33, ['Coffee', 42, 33, 21, 33, '!Java' ]), 4)
 
+    def my_enumerate(self):
+        ''' test my_enumerate '''
+        self.assertEquals([(i, x ) for i, x in my_enumerate('hello')], [(i, x ) for i, x in enumerate('hello')])
+        self.assertEquals([(i, x ) for i, x in my_enumerate('hi! Pythonista')], [(i, x ) for i, x in enumerate('hello')])
+        self.assertEquals([(i, x ) for i, x in my_enumerate([10, 20, 30, 40])], [(i, x ) for i, x in enumerate([10, 20, 30, 40])])
+        self.assertEquals([(i, x ) for i, x in my_enumerate([])], [(i, x ) for i, x in enumerate([])])
+
 if __name__ == "__main__":
     """ This is executed when run from the command line """
     
     unittest.main(exit=False, verbosity=2)
     # main()
     # print(lastOccurrence('L', 'hello world'))
+    
