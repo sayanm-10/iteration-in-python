@@ -20,25 +20,43 @@ def count_vowels(string):
 
     return count
 
-def lastOccurrence(target, targetList):
-    ''' returns the index (offset from 0) of the last occurrence of the target item
-        or None if the target is not found '''
+# def lastOccurrence(target, targetList):
+#     ''' returns the index (offset from 0) of the last occurrence of the target item
+#         or None if the target is not found '''
     
-    lastOccurrence = None
+#     # lastOccurrence = None
 
-    for index, item in enumerate(targetList):
+#     for index, item in enumerate(targetList):
+#         if item == target:
+#             lastOccurrence = index
+
+#     return lastOccurrence
+
+def lastOccurrence(target, targetList):
+    ''' faster approach '''
+
+    offset = None
+    for index, item in enumerate(reversed(targetList)):
         if item == target:
-            lastOccurrence = index
+            offset = index
+            break
 
-    return lastOccurrence
+    if offset is not None:
+        return len(targetList) - offset - 1
+    else:
+        return None
+
+# def my_enumerate(seq):
+#     ''' provides the same functionality as enumerate WITHOUT calling enumerate() '''
+#     counter = 0
+
+#     for element in seq:
+#         yield counter, element
+#         counter += 1
 
 def my_enumerate(seq):
-    ''' provides the same functionality as enumerate WITHOUT calling enumerate() '''
-    counter = 0
-
-    for element in seq:
-        yield counter, element
-        counter += 1
+    for i in range(len(seq)):
+        yield i, seq[i]
 
 '''
     Test cases

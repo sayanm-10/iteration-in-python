@@ -78,6 +78,7 @@ class Fraction:
         ''' Returns a string representation of the fraction '''
         return '0' if self.numerator == 0 else '{}/{}'.format(self.numerator, self.denominator)
 
+    #  TODO: Refactor this to use range which will shorten it
     def simplify(self):
         ''' simplify the fraction into it's smallest possible representation '''
         minimum = min(abs(self.numerator), abs(self.denominator))
