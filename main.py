@@ -58,6 +58,36 @@ def my_enumerate(seq):
     for i in range(len(seq)):
         yield i, seq[i]
 
+def digits(n):
+    ''' return num of digits in n '''
+
+    digits = 1
+    n = abs(n)
+
+    while True:
+        n //= 10
+        if n > 0:
+            digits += 1
+        else:
+            break
+
+    return digits
+
+def updown(n):
+    ''' count from 0 to n and back to 0 '''
+
+    yield from range(n)
+    yield from range(n, -1, -1)
+
+def fib_gen(n):
+    ''' use generator to get n Fibo nums '''
+
+    n1, n2 = 0, 1
+    
+    for i in range(n):
+        yield n1
+        n1, n2 = n2, n1 + n2
+
 '''
     Test cases
 '''
@@ -85,11 +115,21 @@ class AllTest(unittest.TestCase):
     def my_enumerate(self):
         ''' test my_enumerate '''
         self.assertEquals([(i, x ) for i, x in my_enumerate('hello')], [(i, x ) for i, x in enumerate('hello')])
-        self.assertEquals([(i, x ) for i, x in my_enumerate('hi! Pythonista')], [(i, x ) for i, x in enumerate('hello')])
+        self.assertEquals([(i, x ) for i, x in my_enumerate('hi! Pythonista')], [(i, x ) for i, x in enumerate('hi! Pythonista')])
         self.assertEquals([(i, x ) for i, x in my_enumerate([10, 20, 30, 40])], [(i, x ) for i, x in enumerate([10, 20, 30, 40])])
         self.assertEquals([(i, x ) for i, x in my_enumerate([])], [(i, x ) for i, x in enumerate([])])
+
 
 if __name__ == "__main__":
     """ This is executed when run from the command line """
     
     unittest.main(exit=False, verbosity=2)
+    
+    # print(digits(1))
+    
+    # for i in updown(5):
+    #     print(i)
+
+    # for i in fib_gen(7):
+    #     print(i)
+
